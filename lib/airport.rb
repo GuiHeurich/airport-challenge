@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    raise "Weather is stormy!" if stormy?
     @landed_planes << plane
   end
 
