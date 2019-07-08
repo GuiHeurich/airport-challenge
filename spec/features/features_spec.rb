@@ -1,19 +1,16 @@
 require 'airport'
 
 
-describe Airport do
+describe "#user stories" do
 
-  subject(:airport) { described_class.new }
+  subject(:airport) { Airport.new }
   let(:plane) { double :plane}
 
 # As an air traffic controller
 # So I can get passengers to a destination
 # I want to instruct a plane to land at an airport
 
-  describe '#land' do
-    it 'instructs a plane to land' do
-      airport.land(plane)
-      expect(airport.landed_planes.count).to eq 1
-    end
+  it 'so planes land at airports, instruct a plane to land' do
+    expect { airport.land(plane) }.not_to raise_error
   end
 end
