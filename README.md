@@ -44,3 +44,7 @@ I would like a default airport capacity that can be overridden as appropriate
 1. planes can only take off from airports they are in 2. planes that are already flying cannot take off and/or be in an airport
 3. planes that are landed cannot land again and must be in an airport
 ```
+
+## Instructions
+
+Clone this repo, run ```bundle install```, and start landing planes.
