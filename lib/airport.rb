@@ -2,11 +2,18 @@ require_relative 'weather'
 
 class Airport
 
-  CAPACITY = 20
-
   def initialize(weather = Weather.new)
+    @capacity = 20
     @weather = weather
     @landed_planes = []
+  end
+
+  def override_capacity(new_capacity)
+    @capacity = new_capacity
+  end
+
+  def get_capacity
+    @capacity
   end
 
   def land(plane)
@@ -25,7 +32,7 @@ class Airport
   end
 
   def full?
-    @landed_planes.count >= CAPACITY
+    @landed_planes.count == @capacity
   end
 
   def stormy?

@@ -38,7 +38,7 @@ describe "#user stories" do
   # As an air traffic controller
   # To ensure safety
   # I want to prevent landing when weather is stormy
-  it 'prevents landind when weather is stormy' do
+  it 'prevents landing when weather is stormy' do
     allow(airport).to receive(:stormy?).and_return true
     expect { airport.land(plane) }.to raise_error("Weather is stormy!")
   end
@@ -48,5 +48,14 @@ describe "#user stories" do
   # I want to prevent landing when the airport is full
   it 'prevents landing when airport is in full capacity' do
     expect { 21.times { airport.land(plane) } }.to raise_error("Airport full!")
+  end
+
+  # As the system designer
+  # So that the software can be used for many different airports
+  # I would like a default airport capacity that can be overridden as appropriate
+  it "is able to override the airport's capacity" do
+    airport.override_capacity(1)
+    airport.land(plane)
+    expect { airport.land(plane) }.to raise_error("Airport full!")
   end
 end

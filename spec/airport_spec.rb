@@ -54,4 +54,11 @@ describe Airport do
     end
   end
 
+  describe "#override_capacity" do
+    it 'changes the default capacity of the airport' do
+      airport.override_capacity(1)
+      expect(airport.get_capacity).to eq 1
+    end
+  end
+
 end
