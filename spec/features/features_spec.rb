@@ -1,10 +1,11 @@
 require 'airport'
+require 'plane'
 
 
 describe "#user stories" do
 
   subject(:airport) { Airport.new }
-  let(:plane) { double :plane}
+  let(:plane) { Plane.new }
 
 # As an air traffic controller
 # So I can get passengers to a destination
@@ -12,5 +13,15 @@ describe "#user stories" do
 
   it 'so planes land at airports, instruct a plane to land' do
     expect { airport.land(plane) }.not_to raise_error
+  end
+
+  # As an air traffic controller
+  # So I can get passengers on the way to their destination
+  # I want to instruct a plane to take off from an airport and
+  # confirm that it is no longer in the airport
+
+  it 'so planes take off from airports, instruct a plane to take off and confirm' do
+    expect { airport.take_off(plane) }.not_to raise_error
+    expect { airport.confirm_take_off?(plane) }.not_to raise_error
   end
 end
