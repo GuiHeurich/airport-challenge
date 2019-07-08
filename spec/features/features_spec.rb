@@ -3,7 +3,7 @@ require 'plane'
 
 describe "#user stories" do
 
-  subject(:airport) { Airport.new }
+  let(:airport) { Airport.new }
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
@@ -41,5 +41,12 @@ describe "#user stories" do
   it 'prevents landind when weather is stormy' do
     allow(airport).to receive(:stormy?).and_return true
     expect { airport.land(plane) }.to raise_error("Weather is stormy!")
+  end
+
+  # As an air traffic controller
+  # To ensure safety
+  # I want to prevent landing when the airport is full
+  it 'prevents landing when airport is in full capacity' do
+    expect { 21.times { airport.land(plane) } }.to raise_error("Airport full!")
   end
 end

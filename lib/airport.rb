@@ -2,6 +2,8 @@ require_relative 'weather'
 
 class Airport
 
+  CAPACITY = 20
+
   def initialize(weather = Weather.new)
     @weather = weather
     @landed_planes = []
@@ -9,6 +11,7 @@ class Airport
 
   def land(plane)
     raise "Weather is stormy!" if stormy?
+    raise "Airport full!" if full?
     @landed_planes << plane
   end
 
@@ -19,6 +22,10 @@ class Airport
 
   def confirm_take_off?(plane)
     !@landed_planes.include?(plane)
+  end
+
+  def full?
+    @landed_planes.count >= CAPACITY
   end
 
   def stormy?
