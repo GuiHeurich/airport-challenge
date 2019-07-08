@@ -8,6 +8,7 @@ describe Airport do
 
   describe '#land' do
     it 'increases the count of landed planes by 1' do
+      allow(airport).to receive(:stormy?).and_return false
       airport.land(plane)
       expect(airport.landed_planes.count).to eq 1
     end
@@ -17,7 +18,8 @@ describe Airport do
       expect { airport.land(plane) }.to raise_error("Weather is stormy!")
     end
 
-    it 'prevents the plane from landing when weather is stormy' do
+    it 'prevents the plane from landing when the airport is full' do
+      allow(airport).to receive(:stormy?).and_return false
       allow(airport).to receive(:full?).and_return true
       expect { airport.land(plane) }.to raise_error("Airport full!")
     end

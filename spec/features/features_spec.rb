@@ -12,6 +12,7 @@ describe "#user stories" do
 # I want to instruct a plane to land at an airport
 
   it 'so planes land at airports, instruct a plane to land' do
+    allow(airport).to receive(:stormy?).and_return false
     expect { airport.land(plane) }.not_to raise_error
   end
 
@@ -47,6 +48,7 @@ describe "#user stories" do
   # To ensure safety
   # I want to prevent landing when the airport is full
   it 'prevents landing when airport is in full capacity' do
+    allow(airport).to receive(:stormy?).and_return false
     expect { 21.times { airport.land(plane) } }.to raise_error("Airport full!")
   end
 
@@ -54,6 +56,7 @@ describe "#user stories" do
   # So that the software can be used for many different airports
   # I would like a default airport capacity that can be overridden as appropriate
   it "is able to override the airport's capacity" do
+    allow(airport).to receive(:stormy?).and_return false
     airport.override_capacity(1)
     airport.land(plane)
     expect { airport.land(plane) }.to raise_error("Airport full!")
